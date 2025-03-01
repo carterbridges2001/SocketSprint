@@ -1,0 +1,36 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: socketsprint
+      auto-index-creation: true
+  
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 5000
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+app:
+  websocket:
+    endpoint: /ws
+    topic: /topic/messages
+    destination-prefix: /app
+    allowed-origins: "*"
+  
+  redis:
+    stream:
+      key: messages
+      consumer-group: message-group
+      consumer-name: message-consumer-${random.uuid}
+
+logging:
+  level:
+    org.springframework: INFO
+    com.socketsprint: DEBUG
+    reactor.netty: DEBUG
