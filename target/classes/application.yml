@@ -1,15 +1,18 @@
 spring:
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: socketsprint
+      uri: ${MONGODB_URI:mongodb://localhost:27017/socketsprint}
       auto-index-creation: true
+      auto-index-creation-background: true
   
   redis:
-    host: localhost
-    port: 6379
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
     timeout: 5000
+    
+app:
+  mongodb:
+    message-ttl-days: 90  # Messages will be automatically removed after 90 days
 
 server:
   port: 8080
